@@ -17,15 +17,26 @@ def draw_letters():
         letter = letters_list[random_letter_index]
         hand.append(letter)
         letters_list.pop(random_letter_index)
-        
+
     return hand
 def uses_available_letters(word, letter_bank):
-    pass
+    word_upper = word.upper()
+    bank_dict = {}
+    for i in letter_bank:
+        if i in bank_dict:
+            bank_dict[i] += 1
+        else:
+            bank_dict[i] = 1
+
+    for i in word_upper:
+        if i not in bank_dict or bank_dict[i] == 0:
+            return False
+        bank_dict[i] -= 1
+
+    return True
 
 def score_word(word):
     pass
 
 def get_highest_word_score(word_list):
     pass
-
-draw_letters()
