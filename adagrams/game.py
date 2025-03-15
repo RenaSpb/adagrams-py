@@ -22,21 +22,39 @@ def draw_letters():
 def uses_available_letters(word, letter_bank):
     word_upper = word.upper()
     bank_dict = {}
-    for i in letter_bank:
-        if i in bank_dict:
-            bank_dict[i] += 1
+    for letter in letter_bank:
+        if letter in bank_dict:
+            bank_dict[letter] += 1
         else:
-            bank_dict[i] = 1
+            bank_dict[letter] = 1
 
-    for i in word_upper:
-        if i not in bank_dict or bank_dict[i] == 0:
+    for letter in word_upper:
+        if letter not in bank_dict or bank_dict[letter] == 0:
             return False
-        bank_dict[i] -= 1
+        bank_dict[letter] -= 1
 
     return True
 
 def score_word(word):
-    pass
+    letter_scores = {
+    'A': 1, 'E': 1, 'I': 1, 'O': 1, 'U': 1, 'L': 1, 'N': 1, 'R': 1, 'S': 1, 'T': 1,
+    'D': 2, 'G': 2,
+    'B': 3, 'C': 3, 'M': 3, 'P': 3,
+    'F': 4, 'H': 4, 'V': 4, 'W': 4, 'Y': 4,
+    'K': 5,
+    'J': 8, 'X': 8,
+    'Q': 10, 'Z': 10
+}
+    word_upper = word.upper()
+    score = 0
+
+    for letter in word_upper:
+        score += letter_scores[letter]
+
+    if len(word) > 6:
+        score += 8
+
+    return score
 
 def get_highest_word_score(word_list):
     pass
