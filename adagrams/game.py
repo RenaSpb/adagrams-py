@@ -57,4 +57,18 @@ def score_word(word):
     return score
 
 def get_highest_word_score(word_list):
-    pass
+    best_score = ["", 0]
+
+    for word in word_list:
+        word_score = score_word(word)
+
+        if word_score > best_score[1]:
+            best_score[0] = word
+            best_score[1] = word_score
+
+        elif word_score == best_score[1] and len(best_score[0]) != 10:
+            if len(word) == 10 or len(word) < len(best_score[0]):
+                best_score[0] = word
+                best_score[1] = word_score
+
+    return tuple(best_score)
